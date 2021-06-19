@@ -4,7 +4,7 @@ Implmentation of Target Set Selection with snap.py on blogcatalugue dataset.
 
 **Description:** BlogCatalog is asocial blog directory. The dataset contains all links among users.
 
-![Dataset](http://networkrepository.com/soc-BlogCatalog.php)
+[Dataset](http://networkrepository.com/soc-BlogCatalog.php)
 
 1. Create and activate a Python virtual environment
 
