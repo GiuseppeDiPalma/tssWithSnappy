@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""This module provides RP Contacts entry point script."""
+"""This module provides Main entry point script."""
 
 from src.main import main
 
