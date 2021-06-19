@@ -4,6 +4,7 @@
 
 import sys
 import snap
+import platform
 
 def main():
-    print("hello ciao")
+    print("Python version: " + platform.python_version())
