@@ -1,11 +1,6 @@
-# -*- coding: utf-8 -*-
-
-"""This module provides TSS application."""
-
 import sys
 import snap
 import platform
-
 
 
 def load_graph(path): 
@@ -14,7 +9,7 @@ def load_graph(path):
 
 def main():
 	print("Python version: " + platform.python_version())
-	graph = load_graph("/home/luigi/python/tssWithSnappy/resources/blog_catalog.txt")
+	graph = load_graph("resources/blog_catalog.txt")
 	node = graph.GetNI(1)
 
 	print(node.GetId())
