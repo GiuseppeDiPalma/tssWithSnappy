@@ -30,3 +30,6 @@ $ source venv/bin/activate
 ```sh
 (venv) $ python targetsetselection.py
 ```
+
+## TODO-List
+- [ ] Treshold must be set as t(v) = min(treshold, degree(v))
