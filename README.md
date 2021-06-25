@@ -32,4 +32,9 @@ $ source venv/bin/activate
 ```
 
 ## TODO-List
-- [ ] Treshold must be set as t(v) = min(treshold, degree(v))
+
+- [x] Treshold must be set as t(v) = min(treshold, degree(v))  
+- [ ] Decide what metrics we will use
+  - [ ] Threshold: constant, ??
+  - [ ] Edge: constant, 1/(degree_source + degree_dest)
+- [ ] Find and use other dataset
