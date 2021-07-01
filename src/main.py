@@ -41,13 +41,9 @@ def p_edge_neighborhood_biased_reverse(graph, e):
 def p_edge_uniform(graph, e):
     return rnd.random()
 
-<<<<<<< HEAD
-def initialize_threshold(graph,threshold_function,a,b=-1):
-=======
 
 def initialize_threshold(graph, threshold_function, a, b=-1):
     threshold_array = []
->>>>>>> 3105bdce7b4d5ae2078fece77f9827acd944d726
     if b == -1:
         threshold_array = [min(threshold_function(a), graph.GetNI(
             i).GetDeg()) for i in range(1, graph.GetNodes()+1, 1)]
@@ -65,12 +61,8 @@ def load_graph(path):
     graph = snap.LoadEdgeList(snap.TUNGraph, path, 0, 1, '\t')
     return graph
 
-<<<<<<< HEAD
-def subgraph(graph,p_function):
-=======
 
 def subgraph(graph, p_function):
->>>>>>> 3105bdce7b4d5ae2078fece77f9827acd944d726
     for e in graph.Edges():
         if rnd.random() > p_function(graph, e):
             graph.DelEdge(e.GetSrcNId(), e.GetDstNId())
@@ -121,7 +113,6 @@ def TSS(graph, threshold_array):
             else:
                 graph.DelNode(max_vertex_id)
     return S
-<<<<<<< HEAD
 
 def main():
     rnd.seed(1234)
@@ -160,49 +151,3 @@ def main():
             ic(S)
 
         os.remove(tmp_filename)
-=======
-
-
-def main():
-    rnd.seed(1234)
-
-    edge_p_functions = [
-        p_edge_uniform, p_edge_neighborhood_biased, p_edge_neighborhood_biased_reverse]
-    degree_coefficients = [(1,2),(1,3),(2,3)]
-    constants = [2,4,6]
-    
-    for edge_function in edge_p_functions:
-        print("First function\n")
-        # Degree based
-        for coefficients in degree_coefficients:
-            for i in range(1,10,1):
-                graph = load_graph("resources/blog_catalog_3.txt")
-                subgraph(graph, edge_function)
-                print(f"Graph loaded at iteration {i}")
-                print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()} - Degree based with coefficients a={coefficients[0]},b={coefficients[1]} \n")
-
-                threshold_array = initialize_threshold(graph, tf_degree_based, coefficients[0], coefficients[1])  # Cambia la funzione di Threshold
-
-                ic.disable()
-                start = time()
-                S = TSS(graph, threshold_array)
-                ic.enable()
-                print(f"Elapsed time: {time()-start} - Threshold: {i} - |S| = {len(S)}\n")
-                ic(S) 
-        # Constants
-        for value in constants:
-            for i in range(1,10,1):
-                graph = load_graph("resources/blog_catalog_3.txt")
-                subgraph(graph, edge_function)
-                print(f"Graph loaded at iteration {i}")
-                print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()} - Constant value: {value} \n")
-
-                threshold_array = initialize_threshold(graph, tf_constant, value)  # Cambia la funzione di Threshold
-
-                ic.disable()
-                start = time()
-                S = TSS(graph, threshold_array)
-                ic.enable()
-                print(f"Elapsed time: {time()-start} - Threshold: {i} - |S| = {len(S)}\n")
-                ic(S) 
->>>>>>> 3105bdce7b4d5ae2078fece77f9827acd944d726
