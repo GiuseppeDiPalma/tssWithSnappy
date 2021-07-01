@@ -35,6 +35,14 @@ $ source venv/bin/activate
 
 - [x] Treshold must be set as t(v) = min(treshold, degree(v))  
 - [ ] Decide what metrics we will use
-  - [ ] Threshold: constant, ??
-  - [ ] Edge: constant, 1/(degree_source + degree_dest)
+  - [ ] Threshold: constant (2, 4 e 6), proporzionale al grado (d(v)/2, d(v)/3, 2d(v)/3)
+  - [ ] Edge: uniforme, neighborhood overlap biased, 1 - neighborhood overlap biased 
 - [ ] Find and use other dataset
+
+
+## Test
+- Per ogni edge probability
+  - Per ogni threshold function
+    - Esegui algoritmo 10 volte e fai media dimensione target set
+
+Salva il sottografo su disco, così quando lo devi ricaricare ad ogni iterazione è molto veloce
