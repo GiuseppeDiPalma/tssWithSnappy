@@ -1,9 +1,10 @@
+import math , os
+from optparse import OptionParser
 from typing import Any
 import random as rnd
 import snap
 from icecream import ic
 from time import time
-import math
 
 def tf_constant(i):
     return i
@@ -34,7 +35,6 @@ def p_edge_neighborhood_biased_reverse(graph,e):
 def p_edge_uniform(graph,e):
     return rnd.random()
 
-
 def initialize_threshold(graph,threshold_function,a,b=-1):
     if b == -1:
         threshold_array = [min(threshold_function(a),graph.GetNI(i).GetDeg()) for i in range(1,graph.GetNodes()+1,1)]
@@ -46,13 +46,10 @@ def load_graph(path):
     graph = snap.LoadEdgeList(snap.TUNGraph, path, 0, 1, "\t")
     return graph
 
-
-
 def subgraph(graph,p_function):
     for e in graph.Edges():
         if rnd.random() > p_function(graph,e):
             graph.DelEdge(e.GetSrcNId(), e.GetDstNId())
-
 
 def TSS(graph, threshold_array):
     S = set()
@@ -101,23 +98,33 @@ def TSS(graph, threshold_array):
                 graph.DelNode(max_vertex_id)
     return S
     
-
+from scipy.io import mmread
 def main():
     rnd.seed(1234)
+
+    parser = OptionParser("\n\t python %prog -t [filename]")
+
+    parser.add_option("-d", dest="dataset",
+                  help="Filename of dataset", metavar="string")
+
+    (options, args) = parser.parse_args()
     
+    tmp_filename = "resources/tmp_subgraph.txt"
     edge_p_functions = [p_edge_uniform,p_edge_neighborhood_biased,p_edge_neighborhood_biased_reverse]
     
     for edge_function in edge_p_functions:
-        graph = load_graph("resources/blog_catalog_3.txt")
+        graph = load_graph(options.dataset)
         subgraph(graph,edge_function)
-        graph.SaveEdgeList("tmp_subgraph.txt")
+        graph.SaveEdgeList(tmp_filename)
+
+        print(f"|CF| = {graph.GetClustCf()}")
         ## HO GIA' INSERITO IL SALVATAGGIO ED IL CARICAMENTO DEL SOTTOGRAFO
         ## PRENDI ANCHE LA SIZE DEL GRAFO
         ## PER OGNI  FUNZIONE DI PROBABILITA', FAI QUESTO PRATICAMENTE
         for i in range(1,11,1):        
-            graph = load_graph("tmp_subgraph.txt")
+            graph = load_graph(tmp_filename)
             print(f"Graph loaded at iteration {i}")
-            print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}\n")
+            print(f"Graph size: |Nodes| = {graph.GetNodes()} - |Edges| = {graph.GetEdges()}\n")
             
             threshold_array = initialize_threshold(graph,tf_degree_based,1,2) # Cambia la funzione di Threshold
             
@@ -127,4 +134,5 @@ def main():
             ic.enable()
             print(f"Elapsed time: {time()-start} - Threshold: {i} - |S| = {len(S)}\n")
             ic(S)
-    
+
+        os.remove(tmp_filename)
