@@ -58,7 +58,8 @@ def initialize_threshold(graph, threshold_function, a, b=-1):
 
 
 def load_graph(path):
-    graph = snap.LoadEdgeList(snap.TUNGraph, path, 0, 1, '\t')
+    #graph = snap.LoadEdgeList(snap.TUNGraph, path, 0, 1, '\t')
+    graph = snap.LoadEdgeList(snap.TUNGraph, path, 0, 1, "\t")
     return graph
 
 
@@ -114,40 +115,54 @@ def TSS(graph, threshold_array):
                 graph.DelNode(max_vertex_id)
     return S
 
+
 def main():
     rnd.seed(1234)
 
     parser = OptionParser("\n\t python %prog -t [filename]")
 
     parser.add_option("-d", dest="dataset",
-                  help="Filename of dataset", metavar="string")
+                   help="Filename of dataset", metavar="string")
 
     (options, args) = parser.parse_args()
-    
-    tmp_filename = "resources/tmp_subgraph.txt"
-    edge_p_functions = [p_edge_uniform,p_edge_neighborhood_biased,p_edge_neighborhood_biased_reverse]
-    
+
+    edge_p_functions = [
+        p_edge_uniform, p_edge_neighborhood_biased, p_edge_neighborhood_biased_reverse]
+
+    degree_coefficients = [(1,2),(1,3),(2,3)]
+    constants = [2,4,6]
+    print("test "+options.dataset)
     for edge_function in edge_p_functions:
-        graph = load_graph(options.dataset)
-        subgraph(graph,edge_function)
-        graph.SaveEdgeList(tmp_filename)
+        print("First function\n")
+        # Degree based
+        for coefficients in degree_coefficients:
+            for i in range(1,10,1):
+                graph = load_graph(options.dataset)
+                subgraph(graph, edge_function)
+                print(f"Graph loaded at iteration {i}")
+                print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()} - Degree based with coefficients a={coefficients[0]},b={coefficients[1]} \n")
 
-        print(f"|CF| = {graph.GetClustCf()}")
-        ## HO GIA' INSERITO IL SALVATAGGIO ED IL CARICAMENTO DEL SOTTOGRAFO
-        ## PRENDI ANCHE LA SIZE DEL GRAFO
-        ## PER OGNI  FUNZIONE DI PROBABILITA', FAI QUESTO PRATICAMENTE
-        for i in range(1,11,1):        
-            graph = load_graph(tmp_filename)
-            print(f"Graph loaded at iteration {i}")
-            print(f"Graph size: |Nodes| = {graph.GetNodes()} - |Edges| = {graph.GetEdges()}\n")
-            
-            threshold_array = initialize_threshold(graph,tf_degree_based,1,2) # Cambia la funzione di Threshold
-            
-            ic.disable()
-            start = time()
-            S = TSS(graph,threshold_array)
-            ic.enable()
-            print(f"Elapsed time: {time()-start} - Threshold: {i} - |S| = {len(S)}\n")
-            ic(S)
+                threshold_array = initialize_threshold(graph, tf_degree_based, coefficients[0], coefficients[1])  # Cambia la funzione di Threshold
 
-        os.remove(tmp_filename)
+                ic.disable()
+                start = time()
+                S = TSS(graph, threshold_array)
+                ic.enable()
+                print(f"Elapsed time: {time()-start} - Threshold: {i} - |S| = {len(S)}\n")
+                ic(S) 
+        # Constants
+        for value in constants:
+            for i in range(1,10,1):
+                graph = load_graph(options.dataset)
+                subgraph(graph, edge_function)
+                print(f"Graph loaded at iteration {i}")
+                print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()} - Constant value: {value} \n")
+
+                threshold_array = initialize_threshold(graph, tf_constant, value)  # Cambia la funzione di Threshold
+
+                ic.disable()
+                start = time()
+                S = TSS(graph, threshold_array)
+                ic.enable()
+                print(f"Elapsed time: {time()-start} - Threshold: {i} - |S| = {len(S)}\n")
+                ic(S)  
