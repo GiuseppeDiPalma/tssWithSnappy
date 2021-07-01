@@ -1,17 +1,45 @@
 from typing import Any
 import random as rnd
-import sys
 import snap
-import platform
 from icecream import ic
 from time import time
+import math
+
+def tf_constant(i):
+    return i
+
+# t(v) = a * d(v) / b
+def tf_degree_based(v,a,b):
+    return math.ceil(a * v.GetDeg() / b)
+
+def p_edge_neighborhood_biased(graph,e):
+    src_node = graph.GetNI(e.GetSrcNId())
+    dst_node = graph.GetNI(e.GetDstNId())
+    common_neighbors = 0
+    src_degree = src_node.GetDeg()
+    dst_degree = dst_node.GetDeg()
+    for i in range(0,src_degree):
+        node_1_id = src_node.GetNbrNId(i)
+        for j in range(0,dst_degree):
+            node_2_id = dst_node.GetNbrNId(j)
+            if node_1_id == node_2_id:
+                common_neighbors += 1
+    num_neighbors = (src_degree + dst_degree - 2) * 20 / 100
+    overlap = common_neighbors / (num_neighbors + 1)
+    return overlap if overlap < 1 else 1
+
+def p_edge_neighborhood_biased_reverse(graph,e):
+    return 1 -  p_edge_neighborhood_biased(graph,e)
+
+def p_edge_uniform(graph,e):
+    return rnd.random()
 
 
-def t(v):
-    return 2
-
-def initialize_threshold(graph,threshold):
-    threshold_array = [min(threshold,graph.GetNI(i).GetDeg()) for i in range(1,graph.GetNodes()+1,1)]
+def initialize_threshold(graph,threshold_function,a,b=-1):
+    if b == -1:
+        threshold_array = [min(threshold_function(a),graph.GetNI(i).GetDeg()) for i in range(1,graph.GetNodes()+1,1)]
+    else:
+        threshold_array = [min(threshold_function(graph.GetNI(i),a,b),graph.GetNI(i).GetDeg()) for i in range(1,graph.GetNodes()+1,1)]
     return threshold_array
 
 def load_graph(path):
@@ -19,13 +47,10 @@ def load_graph(path):
     return graph
 
 
-def get_probability_edge(edge):
-    return 0.5
 
-
-def subgraph(graph):
+def subgraph(graph,p_function):
     for e in graph.Edges():
-        if rnd.random() > get_probability_edge(e):
+        if rnd.random() > p_function(graph,e):
             graph.DelEdge(e.GetSrcNId(), e.GetDstNId())
 
 
@@ -80,16 +105,26 @@ def TSS(graph, threshold_array):
 def main():
     rnd.seed(1234)
     
-    for i in range(1,11,1):        
+    edge_p_functions = [p_edge_uniform,p_edge_neighborhood_biased,p_edge_neighborhood_biased_reverse]
+    
+    for edge_function in edge_p_functions:
         graph = load_graph("resources/blog_catalog_3.txt")
-        print(f"Graph loaded at iteration {i}")
-        print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}\n")
-        threshold_array = initialize_threshold(graph,i)
-        
-        ic.disable()
-        start = time()
-        S = TSS(graph,threshold_array)
-        ic.enable()
-        print(f"Elapsed time: {time()-start} - Threshold: {i} - |S| = {len(S)}\n")
-        ic(S)
+        subgraph(graph,edge_function)
+        graph.SaveEdgeList("tmp_subgraph.txt")
+        ## HO GIA' INSERITO IL SALVATAGGIO ED IL CARICAMENTO DEL SOTTOGRAFO
+        ## PRENDI ANCHE LA SIZE DEL GRAFO
+        ## PER OGNI  FUNZIONE DI PROBABILITA', FAI QUESTO PRATICAMENTE
+        for i in range(1,11,1):        
+            graph = load_graph("tmp_subgraph.txt")
+            print(f"Graph loaded at iteration {i}")
+            print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}\n")
+            
+            threshold_array = initialize_threshold(graph,tf_degree_based,1,2) # Cambia la funzione di Threshold
+            
+            ic.disable()
+            start = time()
+            S = TSS(graph,threshold_array)
+            ic.enable()
+            print(f"Elapsed time: {time()-start} - Threshold: {i} - |S| = {len(S)}\n")
+            ic(S)
     
