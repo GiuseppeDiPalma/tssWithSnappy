@@ -2,6 +2,7 @@ import math
 import random as rnd
 import snap
 from icecream import ic
+from scipy.io import mmread
 
 def tf_constant(i):
     return i
@@ -54,6 +55,12 @@ def initialize_threshold(graph, threshold_function, a, b=-1):
 def load_graph(path):
     graph = snap.LoadEdgeList(snap.TUNGraph, path, 0, 1, '\t')
     #graph = snap.LoadEdgeList(snap.TUNGraph, path, 0, 1, "\t")
+    #graph = snap.LoadEdgeListStr(snap.TUNGraph, path, 0, 1)
+    return graph
+
+def load_mtx_graph(path):
+    graph = snap.LoadEdgeList(snap.TUNGraph, mmread(path), 0, 1, ' ')
+    print(graph)
     return graph
 
 

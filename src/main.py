@@ -28,6 +28,8 @@ def main():
 
     degree_coefficients = [(1,2),(1,3),(2,3)]
     constants = [2,4,6]
+    #load_mtx_graph(options.dataset)
+
     print(f"Dataset name = {options.dataset}")
 
     for edge_function in edge_p_functions:
