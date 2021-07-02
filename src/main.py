@@ -6,6 +6,7 @@ import snap
 from icecream import ic
 from time import time
 
+DECIMALNUMBER = 4
 
 def tf_constant(i):
     return i
@@ -113,16 +114,19 @@ def TSS(graph, threshold_array):
                 graph.DelNode(max_vertex_id)
     return S
 
-
 def main():
     rnd.seed(1234)
 
-    parser = OptionParser("\n\t python %prog -t [filename]")
+    parser = OptionParser("\n\t python %prog -d [dataset_name]")
 
     parser.add_option("-d", dest="dataset",
                    help="Filename of dataset", metavar="string")
 
+
     (options, args) = parser.parse_args()
+
+    if not options.dataset:
+        parser.error("You must pass a dataset!")
 
     edge_p_functions = [
         p_edge_uniform, p_edge_neighborhood_biased, p_edge_neighborhood_biased_reverse
@@ -135,33 +139,59 @@ def main():
     for edge_function in edge_p_functions:
         # Degree based
         for coefficients in degree_coefficients:
+            print("for coefficients in degree_coefficients:")
+
+            startL = time()
             graph = load_graph(options.dataset)
-            #graph = load_graph("resources/test.txt")
+            print(f"load_graph - Elapsed time: {round(time()-startL, DECIMALNUMBER)}")
+
+            startS = time()
             subgraph(graph, edge_function)
-            #print(f"Graph loaded at iteration {i}")
+            print(f"subgraph - Elapsed time: {round(time()-startS, DECIMALNUMBER)}")
+
             print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}")
             print(f"Degree based with coefficients |a|={coefficients[0]} - |b|={coefficients[1]}")
+
+            startT = time()
             threshold_array = initialize_threshold(graph, tf_degree_based, coefficients[0], coefficients[1])
+            print(f"initialize_threshold - Elapsed time: {round(time()-startT, DECIMALNUMBER)}")
 
             ic.disable()
-            start = time()
+
+            startTSS = time()
             S = TSS(graph, threshold_array)
+            print(f"TSS - Elapsed time: {time()-startTSS}")
+
             ic.enable()
-            print(f"Elapsed time: {time()-start} - Threshold: {1} - |S| = {len(S)}\n")
-            ic(S)
+            #print(f"Solution TSS = {S}")
+            #print(f"Solution Size = {len(S)}")
+            #ic(S)
+
         # Constants
         for value in constants:
+            print("for value in constants:")
+
+            startL = time()
             graph = load_graph(options.dataset)
-            #graph = load_graph("resources/test.txt")
+            print(f"load_graph - Elapsed time: {round(time()-startL, DECIMALNUMBER)}")
+
+            startS = time()
             subgraph(graph, edge_function)
-            #print(f"Graph loaded at iteration {i}")
+            print(f"subgraph - Elapsed time: {round(time()-startS, DECIMALNUMBER)}")
+
             print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()} - Constant value: {value} \n")
 
+            startT = time()
             threshold_array = initialize_threshold(graph, tf_constant, value)
+            print(f"initialize_threshold - Elapsed time: {round(time()-startT, DECIMALNUMBER)}")
 
             ic.disable()
-            start = time()
+
+            startTSS = time()
             S = TSS(graph, threshold_array)
+            print(f"TSS - Elapsed time: {time()-startTSS}")
+
             ic.enable()
-            print(f"Elapsed time: {time()-start} - Threshold: {1} - |S| = {len(S)}\n")
-            ic(S)  
+            #print(f"Solution TSS = {S}")
+            #print(f"Solution Size = {len(S)}")
+            #ic(S)  
