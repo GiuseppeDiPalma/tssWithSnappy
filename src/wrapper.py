@@ -1,5 +1,6 @@
 import math
 import random as rnd
+from time import time
 import snap
 from icecream import ic
 from scipy.io import mmread
@@ -15,10 +16,15 @@ def tf_degree_based(v, a, b):
 def p_edge_neighborhood_biased(graph, e):
     src_node = graph.GetNI(e.GetSrcNId())
     dst_node = graph.GetNI(e.GetDstNId())
+    # print(f"Calculating prob. for edge: ({src_node.GetId()},{dst_node.GetId()})")
     common_neighbors = 0
     src_degree = src_node.GetDeg()
     dst_degree = dst_node.GetDeg()
+    # print(f"Src degree: {src_degree}")
+    # print(f"Dst degree: {dst_degree}")
+    start = time()
     for i in range(0, src_degree):
+        # print(f"Checking node {i} of src node...")
         node_1_id = src_node.GetNbrNId(i)
         for j in range(0, dst_degree):
             node_2_id = dst_node.GetNbrNId(j)
@@ -26,6 +32,8 @@ def p_edge_neighborhood_biased(graph, e):
                 common_neighbors += 1
     num_neighbors = (src_degree + dst_degree - 2) * 20 / 100
     overlap = common_neighbors / (num_neighbors + 1)
+    # print(f"Elaped time: {time()-start}s")
+    # print(f"Probability calculated: {overlap if overlap < 1 else 1}")
     return overlap if overlap < 1 else 1
 
 
