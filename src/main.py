@@ -32,7 +32,9 @@ def main():
     constants = [2,4,6]
     
     print(f"Dataset name = {options.dataset}")
+    startN = time()
     dataset_name = normalize_dataset(options.dataset)
+    print(f"normalize_dataset: {round(time()-startN, DECIMALNUMBER)}")
     
     graph = load_graph(dataset_name)
     print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}")
