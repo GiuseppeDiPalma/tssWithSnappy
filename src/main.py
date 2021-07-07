@@ -67,10 +67,6 @@ def main():
             print("\n--------------\n")
 
             ic.enable()
-            #print(f"Solution TSS = {S}")
-            #print(f"Solution Size = {len(S)}")
-            #ic(S)
-        
         
         # Constants
         print(f"---Constant threshold ---")
@@ -99,6 +95,3 @@ def main():
             print("\n--------------\n")
 
             ic.enable()
-            #print(f"Solution TSS = {S}")
-            #print(f"Solution Size = {len(S)}")
-            #ic(S)  
