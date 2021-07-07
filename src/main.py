@@ -3,14 +3,16 @@ from typing import *
 import random as rnd
 from icecream import ic
 from time import time
+from bitarray import bitarray
 
 from .wrapper import *
+from .utils import *
 
 DECIMALNUMBER = 4
 
 def main():
     rnd.seed(1234)
-
+    
     parser = OptionParser("\n\t python %prog -d [dataset_name]")
 
     parser.add_option("-d", dest="dataset",
@@ -28,10 +30,13 @@ def main():
 
     degree_coefficients = [(1,2),(1,3),(2,3)]
     constants = [2,4,6]
-    #load_mtx_graph(options.dataset)
-
+    
     print(f"Dataset name = {options.dataset}")
-
+    dataset_name = normalize_dataset(options.dataset)
+    
+    graph = load_graph(dataset_name)
+    print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}")
+    bitset_list = get_bitest_for_each_node(graph)
     for edge_function in edge_p_functions:
         print(f"\n---------- Edge function: {edge_function.__name__}----------\n")
     
@@ -40,14 +45,14 @@ def main():
         for coefficients in degree_coefficients:
             print(f"Coefficients: |a|={coefficients[0]} - |b|={coefficients[1]}")
             startL = time()
-            graph = load_graph(options.dataset)
+            graph = load_graph(dataset_name)
             print(f"load_graph: {round(time()-startL, DECIMALNUMBER)}")
 
             startS = time()
-            subgraph(graph, edge_function)
+            subgraph(graph, edge_function,bitset_list)
             print(f"subgraph: {round(time()-startS, DECIMALNUMBER)}")
 
-            print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}")
+            print(f"Subgraph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}")
 
             startT = time()
             threshold_array = initialize_threshold(graph, tf_degree_based, coefficients[0], coefficients[1])
@@ -72,14 +77,14 @@ def main():
         for value in constants:
             print(f"Threshold: {value}")
             startL = time()
-            graph = load_graph(options.dataset)
+            graph = load_graph(dataset_name)
             print(f"load_graph: {round(time()-startL, DECIMALNUMBER)}")
 
             startS = time()
-            subgraph(graph, edge_function)
+            subgraph(graph, edge_function,bitset_list)
             print(f"subgraph: {round(time()-startS, DECIMALNUMBER)}")
 
-            print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()} \n")
+            print(f"Subgraph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()} \n")
 
             startT = time()
             threshold_array = initialize_threshold(graph, tf_constant, value)

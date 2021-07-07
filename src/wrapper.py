@@ -4,6 +4,20 @@ from time import time
 import snap
 from icecream import ic
 from scipy.io import mmread
+from bitarray import bitarray
+
+def get_bitest_for_each_node(graph):
+    list_b = []
+    list_b.append(bitarray()) # Blank element 
+    num_nodes = graph.GetNodes()
+    for node in graph.Nodes():
+        bitset = bitarray(num_nodes+1)
+        bitset.setall(0)
+        degree = node.GetDeg()
+        for i in range(0, degree):
+            bitset[node.GetNbrNId(i)] = True
+        list_b.append(bitset)
+    return list_b
 
 def tf_constant(i):
     return i
@@ -13,35 +27,27 @@ def tf_degree_based(v, a, b):
     return math.ceil(a * v.GetDeg() / b)
 
 
-def p_edge_neighborhood_biased(graph, e):
-    src_node = graph.GetNI(e.GetSrcNId())
-    dst_node = graph.GetNI(e.GetDstNId())
-    # print(f"Calculating prob. for edge: ({src_node.GetId()},{dst_node.GetId()})")
-    common_neighbors = 0
+def p_edge_neighborhood_biased(graph, e,bitset_list):
+    src_id = e.GetSrcNId()
+    dst_id = e.GetDstNId()
+    src_node = graph.GetNI(src_id)
+    dst_node = graph.GetNI(dst_id)
     src_degree = src_node.GetDeg()
     dst_degree = dst_node.GetDeg()
-    # print(f"Src degree: {src_degree}")
-    # print(f"Dst degree: {dst_degree}")
-    start = time()
-    for i in range(0, src_degree):
-        # print(f"Checking node {i} of src node...")
-        node_1_id = src_node.GetNbrNId(i)
-        for j in range(0, dst_degree):
-            node_2_id = dst_node.GetNbrNId(j)
-            if node_1_id == node_2_id:
-                common_neighbors += 1
-    num_neighbors = (src_degree + dst_degree - 2) * 20 / 100
+
+    common_neighbors = (bitset_list[src_id] & bitset_list[dst_id]).count()
+    num_neighbors = (src_degree + dst_degree - common_neighbors - 1) * 1 / 100
+    
     overlap = common_neighbors / (num_neighbors + 1)
-    # print(f"Elaped time: {time()-start}s")
-    # print(f"Probability calculated: {overlap if overlap < 1 else 1}")
+    
     return overlap if overlap < 1 else 1
 
 
-def p_edge_neighborhood_biased_reverse(graph, e):
-    return 1 - p_edge_neighborhood_biased(graph, e)
+def p_edge_neighborhood_biased_reverse(graph, e,bitset_list):
+    return 1 - p_edge_neighborhood_biased(graph, e,bitset_list)
 
 
-def p_edge_uniform(graph, e):
+def p_edge_uniform(graph, e,bitset_list):
     return rnd.random()
 
 
@@ -62,8 +68,6 @@ def initialize_threshold(graph, threshold_function, a, b=-1):
 
 def load_graph(path):
     graph = snap.LoadEdgeList(snap.TUNGraph, path, 0, 1, '\t')
-    #graph = snap.LoadEdgeList(snap.TUNGraph, path, 0, 1, "\t")
-    #graph = snap.LoadEdgeListStr(snap.TUNGraph, path, 0, 1)
     return graph
 
 def load_mtx_graph(path):
@@ -72,10 +76,13 @@ def load_mtx_graph(path):
     return graph
 
 
-def subgraph(graph, p_function):
+def subgraph(graph, p_function,bitset_list):
+    list_edge = []
     for e in graph.Edges():
-        if rnd.random() > p_function(graph, e):
-            graph.DelEdge(e.GetSrcNId(), e.GetDstNId())
+        if rnd.random() > p_function(graph, e,bitset_list):
+            list_edge.append((e.GetSrcNId(), e.GetDstNId()))
+    for e in list_edge:
+        graph.DelEdge(e[0], e[1])
 
 def TSS(graph, threshold_array):
     S = set()
@@ -86,7 +93,7 @@ def TSS(graph, threshold_array):
         v_minor_id = None
         max_vertex_id = -1
         max_value = -1
-        ic(num)
+    
         for v in graph.Nodes():
             id = v.GetId()
             degree = v.GetDeg()
