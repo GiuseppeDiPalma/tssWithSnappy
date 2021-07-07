@@ -3,7 +3,6 @@ import random as rnd
 from time import time
 import snap
 from icecream import ic
-from scipy.io import mmread
 from bitarray import bitarray
 
 def get_bitest_for_each_node(graph):
@@ -69,12 +68,6 @@ def initialize_threshold(graph, threshold_function, a, b=-1):
 def load_graph(path):
     graph = snap.LoadEdgeList(snap.TUNGraph, path, 0, 1, '\t')
     return graph
-
-def load_mtx_graph(path):
-    graph = snap.LoadEdgeList(snap.TUNGraph, mmread(path), 0, 1, ' ')
-    print(graph)
-    return graph
-
 
 def subgraph(graph, p_function,bitset_list):
     list_edge = []
