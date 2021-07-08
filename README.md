@@ -34,10 +34,12 @@ $ source venv/bin/activate
 ## TODO-List
 
 - [x] Treshold must be set as t(v) = min(treshold, degree(v))  
-- [ ] Decide what metrics we will use
-  - [ ] Threshold: constant (2, 4 e 6), proporzionale al grado (d(v)/2, d(v)/3, 2d(v)/3)
-  - [ ] Edge: uniforme, neighborhood overlap biased, 1 - neighborhood overlap biased 
-- [ ] Find and use other dataset
+- [x] Decide what metrics we will use
+  - [x] Threshold: constant (2, 4 e 6), proporzionale al grado (d(v)/2, d(v)/3, 2d(v)/3)
+  - [x] Edge: uniforme, neighborhood overlap biased, 1 - neighborhood overlap biased 
+- [x] Find and use other dataset
+- [ ] Make all benchmarks for all datasets
+- [ ] Write report
 
 
 ## Test
@@ -60,5 +62,3 @@ $ source venv/bin/activate
 |Delicious|103.144|1.419.519||-|536.108|487.972|   	|   	|
 |Douban|154.907|654.188||9|154.908|40.612|   	|   	|
 |Youtube2|1.138.499|2.990.443||-|1.134.890|3.056.537|   	|   	|
-
-Salva il sottografo su disco, così quando lo devi ricaricare ad ogni iterazione è molto veloce
