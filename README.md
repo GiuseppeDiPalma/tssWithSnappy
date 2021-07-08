@@ -28,7 +28,7 @@ $ source venv/bin/activate
 3. Run the application
 
 ```sh
-(venv) $ python targetsetselection.py
+(venv) $ python targetsetselection.py -d dataset.txt
 ```
 
 ## TODO-List
