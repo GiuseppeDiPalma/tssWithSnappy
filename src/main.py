@@ -34,66 +34,68 @@ def main():
     print(f"Dataset name = {options.dataset}")
     startN = time()
     dataset_name = normalize_dataset(options.dataset)
-    print(f"normalize_dataset: {round(time()-startN, DECIMALNUMBER)}")
+    print(f"Time normalize_dataset: {round(time()-startN, DECIMALNUMBER)}")
     
     graph = load_graph(dataset_name)
-    print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}")
     bitset_list = get_bitest_for_each_node(graph)
-    for edge_function in edge_p_functions:
-        print(f"\n---------- Edge function: {edge_function.__name__}----------\n")
-    
-        print(f"--- Degree based threshold with coefficient ---\n")
-        # Degree based
-        for coefficients in degree_coefficients:
-            print(f"Coefficients: |a|={coefficients[0]} - |b|={coefficients[1]}")
-            startL = time()
-            graph = load_graph(dataset_name)
-            print(f"load_graph: {round(time()-startL, DECIMALNUMBER)}")
-
-            startS = time()
-            subgraph(graph, edge_function,bitset_list)
-            print(f"subgraph: {round(time()-startS, DECIMALNUMBER)}")
-
-            print(f"Subgraph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}")
-
-            startT = time()
-            threshold_array = initialize_threshold(graph, tf_degree_based, coefficients[0], coefficients[1])
-            print(f"Initialize_threshold: {round(time()-startT, DECIMALNUMBER)}")
-
-            ic.disable()
-
-            startTSS = time()
-            S = TSS(graph, threshold_array)
-            print(f"TSS: {time()-startTSS}")
-            print(f"|S| = {len(S)}")
-            print("\n--------------\n")
-
-            ic.enable()
+    print_graph_info(graph)
+    x=1
+    if(x==0):
+        for edge_function in edge_p_functions:
+            print(f"\n---------- Edge function: {edge_function.__name__}----------\n")
         
-        # Constants
-        print(f"---Constant threshold ---")
-        for value in constants:
-            print(f"Threshold: {value}")
-            startL = time()
-            graph = load_graph(dataset_name)
-            print(f"load_graph: {round(time()-startL, DECIMALNUMBER)}")
+            print(f"--- Degree based threshold with coefficient ---\n")
+            # Degree based
+            for coefficients in degree_coefficients:
+                print(f"Coefficients: |a|={coefficients[0]} - |b|={coefficients[1]}")
+                startL = time()
+                graph = load_graph(dataset_name)
+                print(f"Time load_graph: {round(time()-startL, DECIMALNUMBER)}")
 
-            startS = time()
-            subgraph(graph, edge_function,bitset_list)
-            print(f"subgraph: {round(time()-startS, DECIMALNUMBER)}")
+                startS = time()
+                subgraph(graph, edge_function,bitset_list)
+                print(f"Time subgraph: {round(time()-startS, DECIMALNUMBER)}")
 
-            print(f"Subgraph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()} \n")
+                print(f"Subgraph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}")
 
-            startT = time()
-            threshold_array = initialize_threshold(graph, tf_constant, value)
-            print(f"Initialize_threshold: {round(time()-startT, DECIMALNUMBER)}")
+                startT = time()
+                threshold_array = initialize_threshold(graph, tf_degree_based, coefficients[0], coefficients[1])
+                print(f"Time Initialize_threshold: {round(time()-startT, DECIMALNUMBER)}")
 
-            ic.disable()
+                ic.disable()
 
-            startTSS = time()
-            S = TSS(graph, threshold_array)
-            print(f"TSS: {time()-startTSS}")
-            print(f"|S| = {len(S)}")
-            print("\n--------------\n")
+                startTSS = time()
+                S = TSS(graph, threshold_array)
+                print(f"Time TSS: {time()-startTSS}")
+                print(f"|S| = {len(S)}")
+                print("\n--------------\n")
 
-            ic.enable()
+                ic.enable()
+            
+            # Constants
+            print(f"---Constant threshold ---")
+            for value in constants:
+                print(f"Threshold: {value}")
+                startL = time()
+                graph = load_graph(dataset_name)
+                print(f"Time load_graph: {round(time()-startL, DECIMALNUMBER)}")
+
+                startS = time()
+                subgraph(graph, edge_function,bitset_list)
+                print(f"Time subgraph: {round(time()-startS, DECIMALNUMBER)}")
+
+                print(f"Subgraph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()} \n")
+
+                startT = time()
+                threshold_array = initialize_threshold(graph, tf_constant, value)
+                print(f"Time Initialize_threshold: {round(time()-startT, DECIMALNUMBER)}")
+
+                ic.disable()
+
+                startTSS = time()
+                S = TSS(graph, threshold_array)
+                print(f"Time TSS: {time()-startTSS}")
+                print(f"|S| = {len(S)}")
+                print("\n--------------\n")
+
+                ic.enable()
