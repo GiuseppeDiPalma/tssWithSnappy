@@ -24,3 +24,8 @@ def normalize_dataset(path):
 		count += 1
 	out.close()
 	return "resources/normalized.txt"
+
+def print_graph_info(graph):
+	print(f"Graph size: |N| = {graph.GetNodes()} - |E| = {graph.GetEdges()}")
+	print(f"|Max Deg| = {graph.GetMxDegNId()}")
+	print(f"|Clust coeff| = {graph.GetClustCf()}")
