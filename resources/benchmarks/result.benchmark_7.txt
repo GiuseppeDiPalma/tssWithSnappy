@@ -1,0 +1,92 @@
+Dataset name = resources/dataset/blog_catalog_3.txt
+
+Coefficients: |a|=1 - |b|=2
+
+Size: |S| = 323
+
+------------------------
+Coefficients: |a|=1 - |b|=3
+
+Size: |S| = 122
+
+------------------------
+Coefficients: |a|=2 - |b|=3
+
+Size: |S| = 814
+
+------------------------
+Threshold: 2
+
+Size: |S| = 49
+
+------------------------
+Threshold: 4
+
+Size: |S| = 163
+
+------------------------
+Threshold: 6
+
+Size: |S| = 326
+
+------------------------
+Coefficients: |a|=1 - |b|=2
+
+Size: |S| = 273
+
+------------------------
+Coefficients: |a|=1 - |b|=3
+
+Size: |S| = 110
+
+------------------------
+Coefficients: |a|=2 - |b|=3
+
+Size: |S| = 620
+
+------------------------
+Threshold: 2
+
+Size: |S| = 3
+
+------------------------
+Threshold: 4
+
+Size: |S| = 28
+
+------------------------
+Threshold: 6
+
+Size: |S| = 91
+
+------------------------
+Coefficients: |a|=1 - |b|=2
+
+Size: |S| = 191
+
+------------------------
+Coefficients: |a|=1 - |b|=3
+
+Size: |S| = 75
+
+------------------------
+Coefficients: |a|=2 - |b|=3
+
+Size: |S| = 434
+
+------------------------
+Threshold: 2
+
+Size: |S| = 3
+
+------------------------
+Threshold: 4
+
+Size: |S| = 7
+
+------------------------
+Threshold: 6
+
+Size: |S| = 16
+
+------------------------
