@@ -1,0 +1,219 @@
+Dataset name = resources/dataset/blog_catalog_3.txt
+normalize_dataset: 3.534
+Graph size: |N| = 10312 - |E| = 333983
+
+---------- Edge function: p_edge_neighborhood_biased----------
+
+--- Degree based threshold with coefficient ---
+
+Coefficients: |a|=1 - |b|=2
+load_graph: 0.3404
+subgraph: 6.9523
+Subgraph size: |N| = 10312 - |E| = 107684
+
+Initialize_threshold: 0.0681
+TSS: 209.80830669403076
+|S| = 323
+
+--------------
+
+Coefficients: |a|=1 - |b|=3
+load_graph: 0.3309
+subgraph: 6.8052
+Subgraph size: |N| = 10312 - |E| = 107539
+
+Initialize_threshold: 0.0603
+TSS: 209.18624663352966
+|S| = 122
+
+--------------
+
+Coefficients: |a|=2 - |b|=3
+load_graph: 0.3376
+subgraph: 6.9532
+Subgraph size: |N| = 10312 - |E| = 107429
+
+Initialize_threshold: 0.0997
+TSS: 212.0303394794464
+|S| = 814
+
+--------------
+
+---Constant threshold ---
+Threshold: 2
+load_graph: 0.3227
+subgraph: 6.8009
+Subgraph size: |N| = 10312 - |E| = 107546 
+
+Initialize_threshold: 0.0307
+TSS: 74.99087166786194
+|S| = 49
+
+--------------
+
+Threshold: 4
+load_graph: 0.3385
+subgraph: 7.0605
+Subgraph size: |N| = 10312 - |E| = 107460 
+
+Initialize_threshold: 0.0234
+TSS: 69.93652629852295
+|S| = 163
+
+--------------
+
+Threshold: 6
+load_graph: 0.3408
+subgraph: 7.8564
+Subgraph size: |N| = 10312 - |E| = 107598 
+
+Initialize_threshold: 0.0299
+TSS: 77.98642754554749
+|S| = 326
+
+--------------
+
+
+---------- Edge function: p_edge_uniform----------
+
+--- Degree based threshold with coefficient ---
+
+Coefficients: |a|=1 - |b|=2
+load_graph: 0.3404
+subgraph: 2.0845
+Subgraph size: |N| = 10312 - |E| = 166912
+
+Initialize_threshold: 0.0596
+TSS: 272.1353476047516
+|S| = 273
+
+--------------
+
+Coefficients: |a|=1 - |b|=3
+load_graph: 0.3385
+subgraph: 2.1213
+Subgraph size: |N| = 10312 - |E| = 166740
+
+Initialize_threshold: 0.0597
+TSS: 172.23349046707153
+|S| = 110
+
+--------------
+
+Coefficients: |a|=2 - |b|=3
+load_graph: 0.3244
+subgraph: 2.0918
+Subgraph size: |N| = 10312 - |E| = 167008
+
+Initialize_threshold: 0.0526
+TSS: 272.89508509635925
+|S| = 620
+
+--------------
+
+---Constant threshold ---
+Threshold: 2
+load_graph: 0.3219
+subgraph: 2.0769
+Subgraph size: |N| = 10312 - |E| = 166576 
+
+Initialize_threshold: 0.0309
+TSS: 264.5969398021698
+|S| = 3
+
+--------------
+
+Threshold: 4
+load_graph: 0.3412
+subgraph: 2.0891
+Subgraph size: |N| = 10312 - |E| = 167177 
+
+Initialize_threshold: 0.0297
+TSS: 265.2598853111267
+|S| = 28
+
+--------------
+
+Threshold: 6
+load_graph: 0.3406
+subgraph: 2.0787
+Subgraph size: |N| = 10312 - |E| = 166646 
+
+Initialize_threshold: 0.03
+TSS: 120.25599956512451
+|S| = 91
+
+--------------
+
+
+---------- Edge function: p_edge_neighborhood_biased_reverse----------
+
+--- Degree based threshold with coefficient ---
+
+Coefficients: |a|=1 - |b|=2
+load_graph: 0.3237
+subgraph: 6.4462
+Subgraph size: |N| = 10312 - |E| = 226293
+
+Initialize_threshold: 0.0599
+TSS: 273.8787045478821
+|S| = 191
+
+--------------
+
+Coefficients: |a|=1 - |b|=3
+load_graph: 0.3389
+subgraph: 6.5671
+Subgraph size: |N| = 10312 - |E| = 226643
+
+Initialize_threshold: 0.0538
+TSS: 274.79287672042847
+|S| = 75
+
+--------------
+
+Coefficients: |a|=2 - |b|=3
+load_graph: 0.3204
+subgraph: 6.4553
+Subgraph size: |N| = 10312 - |E| = 226682
+
+Initialize_threshold: 0.0591
+TSS: 202.4905755519867
+|S| = 434
+
+--------------
+
+---Constant threshold ---
+Threshold: 2
+load_graph: 0.1211
+subgraph: 2.3818
+Subgraph size: |N| = 10312 - |E| = 226672 
+
+Initialize_threshold: 0.0113
+TSS: 245.8536775112152
+|S| = 3
+
+--------------
+
+Threshold: 4
+load_graph: 0.3392
+subgraph: 6.6122
+Subgraph size: |N| = 10312 - |E| = 226422 
+
+Initialize_threshold: 0.0295
+TSS: 271.4951295852661
+|S| = 7
+
+--------------
+
+Threshold: 6
+load_graph: 0.3511
+subgraph: 6.6085
+Subgraph size: |N| = 10312 - |E| = 226578 
+
+Initialize_threshold: 0.0308
+TSS: 272.12808299064636
+|S| = 16
+
+--------------
+

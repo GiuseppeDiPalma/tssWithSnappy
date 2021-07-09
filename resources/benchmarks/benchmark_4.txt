@@ -1,0 +1,219 @@
+Dataset name = resources/dataset/CA-HepPh.txt
+normalize_dataset: 2.5159
+Graph size: |N| = 12008 - |E| = 118521
+
+---------- Edge function: p_edge_neighborhood_biased----------
+
+--- Degree based threshold with coefficient ---
+
+Coefficients: |a|=1 - |b|=2
+load_graph: 0.3206
+subgraph: 2.7062
+Subgraph size: |N| = 12008 - |E| = 1899
+
+Initialize_threshold: 0.0716
+TSS: 8.441943645477295
+|S| = 497
+
+--------------
+
+Coefficients: |a|=1 - |b|=3
+load_graph: 0.3316
+subgraph: 2.66
+Subgraph size: |N| = 12008 - |E| = 1935
+
+Initialize_threshold: 0.0712
+TSS: 8.651485919952393
+|S| = 457
+
+--------------
+
+Coefficients: |a|=2 - |b|=3
+load_graph: 0.3037
+subgraph: 2.6464
+Subgraph size: |N| = 12008 - |E| = 1940
+
+Initialize_threshold: 0.0709
+TSS: 8.824538230895996
+|S| = 670
+
+--------------
+
+---Constant threshold ---
+Threshold: 2
+load_graph: 0.3037
+subgraph: 2.6301
+Subgraph size: |N| = 12008 - |E| = 1902 
+
+Initialize_threshold: 0.0387
+TSS: 8.246978044509888
+|S| = 565
+
+--------------
+
+Threshold: 4
+load_graph: 0.3223
+subgraph: 2.6384
+Subgraph size: |N| = 12008 - |E| = 1928 
+
+Initialize_threshold: 0.0321
+TSS: 8.466105461120605
+|S| = 662
+
+--------------
+
+Threshold: 6
+load_graph: 0.3104
+subgraph: 2.6163
+Subgraph size: |N| = 12008 - |E| = 1902 
+
+Initialize_threshold: 0.0326
+TSS: 8.505886793136597
+|S| = 695
+
+--------------
+
+
+---------- Edge function: p_edge_uniform----------
+
+--- Degree based threshold with coefficient ---
+
+Coefficients: |a|=1 - |b|=2
+load_graph: 0.3227
+subgraph: 0.7199
+Subgraph size: |N| = 12008 - |E| = 59195
+
+Initialize_threshold: 0.0712
+TSS: 303.9231071472168
+|S| = 1398
+
+--------------
+
+Coefficients: |a|=1 - |b|=3
+load_graph: 0.3083
+subgraph: 0.7226
+Subgraph size: |N| = 12008 - |E| = 59291
+
+Initialize_threshold: 0.0706
+TSS: 302.68084836006165
+|S| = 676
+
+--------------
+
+Coefficients: |a|=2 - |b|=3
+load_graph: 0.3176
+subgraph: 0.755
+Subgraph size: |N| = 12008 - |E| = 59159
+
+Initialize_threshold: 0.0784
+TSS: 313.8993034362793
+|S| = 2924
+
+--------------
+
+---Constant threshold ---
+Threshold: 2
+load_graph: 0.3302
+subgraph: 0.7134
+Subgraph size: |N| = 12008 - |E| = 59060 
+
+Initialize_threshold: 0.0404
+TSS: 150.23748517036438
+|S| = 995
+
+--------------
+
+Threshold: 4
+load_graph: 0.3272
+subgraph: 0.7114
+Subgraph size: |N| = 12008 - |E| = 58877 
+
+Initialize_threshold: 0.038
+TSS: 217.34743857383728
+|S| = 2160
+
+--------------
+
+Threshold: 6
+load_graph: 0.1153
+subgraph: 0.2723
+Subgraph size: |N| = 12008 - |E| = 59257 
+
+Initialize_threshold: 0.0132
+TSS: 177.93894290924072
+|S| = 2792
+
+--------------
+
+
+---------- Edge function: p_edge_neighborhood_biased_reverse----------
+
+--- Degree based threshold with coefficient ---
+
+Coefficients: |a|=1 - |b|=2
+load_graph: 0.3142
+subgraph: 2.3448
+Subgraph size: |N| = 12008 - |E| = 116600
+
+Initialize_threshold: 0.1396
+TSS: 395.6610565185547
+|S| = 1822
+
+--------------
+
+Coefficients: |a|=1 - |b|=3
+load_graph: 0.3239
+subgraph: 2.2771
+Subgraph size: |N| = 12008 - |E| = 116636
+
+Initialize_threshold: 0.0696
+TSS: 400.2999150753021
+|S| = 903
+
+--------------
+
+Coefficients: |a|=2 - |b|=3
+load_graph: 0.3158
+subgraph: 2.3373
+Subgraph size: |N| = 12008 - |E| = 116604
+
+Initialize_threshold: 0.0705
+TSS: 396.24487113952637
+|S| = 3579
+
+--------------
+
+---Constant threshold ---
+Threshold: 2
+load_graph: 0.3036
+subgraph: 2.5274
+Subgraph size: |N| = 12008 - |E| = 116622 
+
+Initialize_threshold: 0.0592
+TSS: 111.0007152557373
+|S| = 771
+
+--------------
+
+Threshold: 4
+load_graph: 0.3127
+subgraph: 2.283
+Subgraph size: |N| = 12008 - |E| = 116590 
+
+Initialize_threshold: 0.0387
+TSS: 241.342768907547
+|S| = 1853
+
+--------------
+
+Threshold: 6
+load_graph: 0.3108
+subgraph: 2.2958
+Subgraph size: |N| = 12008 - |E| = 116602 
+
+Initialize_threshold: 0.04
+TSS: 187.57787537574768
+|S| = 2739
+
+--------------
+
