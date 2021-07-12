@@ -10,7 +10,7 @@ Implmentation of Target Set Selection with snap.py on blogcatalugue dataset.
 
 ```sh
 $ cd tssWithSnappy/
-$ python -m venv ./venv
+$ python3.7 -m venv ./venv
 $ source venv/bin/activate
 (venv) $
 ```
@@ -22,13 +22,13 @@ $ source venv/bin/activate
 2. Install the dependencies
 
 ```sh
-(venv) $ python -m pip install -r requirements.txt
+(venv) $ python3.7 -m pip install -r requirements.txt
 ```
 
 3. Run the application
 
 ```sh
-(venv) $ python targetsetselection.py -d dataset.txt
+(venv) $ python3.7 targetsetselection.py -d dataset.txt
 ```
 
 ## TODO-List
