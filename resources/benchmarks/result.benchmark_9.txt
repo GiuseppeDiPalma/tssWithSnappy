@@ -1,0 +1,92 @@
+Dataset name = resources/dataset/email-Eu-core.txt
+
+Coefficients: |a|=1 - |b|=2
+
+Size: |S| = 87
+
+------------------------
+Coefficients: |a|=1 - |b|=3
+
+Size: |S| = 31
+
+------------------------
+Coefficients: |a|=2 - |b|=3
+
+Size: |S| = 190
+
+------------------------
+Threshold: 2
+
+Size: |S| = 1
+
+------------------------
+Threshold: 4
+
+Size: |S| = 4
+
+------------------------
+Threshold: 6
+
+Size: |S| = 11
+
+------------------------
+Coefficients: |a|=1 - |b|=2
+
+Size: |S| = 77
+
+------------------------
+Coefficients: |a|=1 - |b|=3
+
+Size: |S| = 28
+
+------------------------
+Coefficients: |a|=2 - |b|=3
+
+Size: |S| = 189
+
+------------------------
+Threshold: 2
+
+Size: |S| = 4
+
+------------------------
+Threshold: 4
+
+Size: |S| = 11
+
+------------------------
+Threshold: 6
+
+Size: |S| = 32
+
+------------------------
+Coefficients: |a|=1 - |b|=2
+
+Size: |S| = 71
+
+------------------------
+Coefficients: |a|=1 - |b|=3
+
+Size: |S| = 77
+
+------------------------
+Coefficients: |a|=2 - |b|=3
+
+Size: |S| = 73
+
+------------------------
+Threshold: 2
+
+Size: |S| = 71
+
+------------------------
+Threshold: 4
+
+Size: |S| = 69
+
+------------------------
+Threshold: 6
+
+Size: |S| = 69
+
+------------------------
