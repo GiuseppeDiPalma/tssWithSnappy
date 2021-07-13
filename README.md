@@ -51,7 +51,6 @@ $ source venv/bin/activate
 
 | Name             | #nodes  | #edges    | Max Deg | Diam | LCC Size | #Triangles  | Clust Coeff | Modul  |
 | ---------------- | ------- | --------- | ------- | ---- | -------- | ----------- | ----------- | ------ |
-| Blog_catalog     | 88.784  | 2.093.195 | 32      | -    | 88,784   | 51.193.389  | 0.3533      | 0.3182 |
 | Blog_catalog_3   | 10.312  | 333.983   | 4839    | 5    | 10.312   | 5.608.664   | 0.4631      | 0.2374 |
 | CA-AstroPh       | 18.772  | 198.110   | 7299    | 14   | 17.903   | 1.351.441   | 0.6309      | 0.3072 |
 | CA-CondMat       | 23.133  | 93.497    | 15756   | 14   | 21.363   | 173.361     | 0.6339      | 0.5809 |
@@ -63,20 +62,17 @@ $ source venv/bin/activate
 
 ###### Explanations
 
-Max Deg (maximum degree)
-: The maximum possible degree of a node.
-
-Diam (diameter)
-: Largest minimum distance between two nodes.
-
-LCC Size (strongly connected component sizes)
-: Distribution of strongly connected component sizes.
-
-Triangles
-: Number of triangles in the dataset.
-
-Clust Coeff (clustering coefficient)
-: Measure of the degree to which nodes in a graph tend to cluster together.
-
-Modul (modularity)
-: Measures the strength of division of a network into groups, clusters or communities.
+<dl>
+  <dt><strong>Max Deg (maximum degree)</strong></dt>
+  <dd>The maximum possible degree of a node.</dd>
+  <dt><strong>Diam (diameter)</strong></dt>
+  <dd>Largest minimum distance between two nodes.</dd>
+  <dt><strong>LCC Size (strongly connected component sizes)</strong></dt>
+  <dd>Distribution of strongly connected component sizes.</dd>
+  <dt><strong>Triangles</strong></dt>
+  <dd>Number of triangles in the dataset.</dd>
+  <dt><strong>Clust Coeff (clustering coefficient)</strong></dt>
+  <dd>Measure of the degree to which nodes in a graph tend to cluster together.</dd>
+  <dt><strong>Modul (modularity)</strong></dt>
+  <dd>Number of triangles in the dataset.</dd>
+</dl>
