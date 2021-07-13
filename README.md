@@ -58,5 +58,25 @@ $ source venv/bin/activate
 |CA-GrQc|5.242|14.496|4234|17|4158|48.260|0.5304|0.7433|
 |CA-HepPh|10.008|118.521|9647|13|11.204|3.358.499|0.6118|0.5085|
 |CA-HepTh|9.877|25.998|223|17|8638|28.399|0.4718|0.6128|
-|Brightkite|58228|214078||16|56.739|494.728|0.1723||
-|email-Eu-core|1005|16706||7|986|105.461|0.3994||
+|Brightkite|58228|214078|41|16|56.739|494.728|0.1723|0.172|
+|email-Eu-core|1005|16706|161|7|986|105.461|0.3994|0.5391|
+
+###### Explanations
+
+Max Deg (maximum degree)
+: The maximum possible degree of a node.
+
+Diam (diameter)
+: Largest minimum distance between two nodes.
+
+LCC Size (strongly connected component sizes)
+: Distribution of strongly connected component sizes.
+
+Triangles
+: Number of triangles in the dataset.
+
+Clust Coeff (clustering coefficient)
+: Measure of the degree to which nodes in a graph tend to cluster together.
+
+Modul (modularity)
+: Measures the strength of division of a network into groups, clusters or communities.
