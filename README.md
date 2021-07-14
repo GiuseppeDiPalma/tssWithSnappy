@@ -60,7 +60,7 @@ $ source venv/bin/activate
 | Brightkite       | 58228   | 214078    | 41      | 16   | 56.739   | 494.728     | 0.1723      | 0.172  |
 | email-Eu-core    | 1005    | 16706     | 161     | 7    | 986      | 105.461     | 0.3994      | 0.5391 |
 
-###### Explanations
+###### Expelanations
 
 <dl>
   <dt><strong>Max Deg (maximum degree)</strong></dt>
