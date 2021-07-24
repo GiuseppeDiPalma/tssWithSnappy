@@ -69,7 +69,7 @@ $ source venv/bin/activate
 
 ## Results
 
-![alt](../tssWithSnappy/resources/benchmarks/p_edge_neighborhood_biased.png)
+![alt](resources/benchmarks/p_edge_neighborhood_biased.png)
 
 ![alt](../tssWithSnappy/resources/benchmarks/p_edge_uniform.png)
 
