@@ -1,10 +1,8 @@
 # Target set selection with snap.py
 
-Implmentation of Target Set Selection with snap.py on blogcatalugue dataset.
+Implmentation of Target Set Selection with snap.py on varius dataset.
 
-**Description:** BlogCatalog is asocial blog directory. The dataset contains all links among users.
-
-[Dataset](http://networkrepository.com/soc-BlogCatalog.php)
+#### Run application
 
 1. Create and activate a Python virtual environment
 
@@ -30,17 +28,6 @@ $ source venv/bin/activate
 ```sh
 (venv) $ python3.7 targetsetselection.py -d dataset.txt
 ```
-
-## TODO-List
-
-- [x] Treshold must be set as t(v) = min(treshold, degree(v))  
-- [x] Decide what metrics we will use
-  - [x] Threshold: constant (2, 4 e 6), proporzionale al grado (d(v)/2, d(v)/3, 2d(v)/3)
-  - [x] Edge: uniforme, neighborhood overlap biased, 1 - neighborhood overlap biased 
-- [x] Find and use other dataset
-- [ ] Make all benchmarks for all datasets
-- [ ] Write report
-
 
 ## Test
 - Per ogni edge probability
