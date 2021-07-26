@@ -3,14 +3,13 @@ import sys
 import statistics as sts
 
 def read_result(fileName):
+    stringa = sys.argv[2]
     resultList=[] 
     with open(fileName, 'r') as f:
         for line in f:
             if "Dataset name" in line:
                 print(line)
-            if "Coefficients" in line:
-                print(line)
-            if "Threshold" in line:
+            if stringa in line:
                 print(line)
             if "|S|" in line:
                 print(f"Size: {line}")
